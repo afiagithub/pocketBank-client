@@ -34,6 +34,7 @@ const Register = () => {
                             pin,
                             mobile,
                             role,
+                            balance: 0,
                             status: 'pending'
                         }
                         const res = await axiosPublic.post("/users", userInfo);

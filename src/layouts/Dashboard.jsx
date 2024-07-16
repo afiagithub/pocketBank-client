@@ -82,7 +82,7 @@ const Dashboard = () => {
                         {
                             isAdmin ? <ul className="font-semibold space-y-2 my-4">
                                 <li><Link to='/dashboard'>Admin Profile</Link></li>
-                                <li><Link to='/dashboard/profile'>User Management</Link></li>
+                                <li><Link to='/dashboard/manage'>User Management</Link></li>
                                 <li><Link to='/dashboard/all-users'>System Monitoring</Link></li>
                             </ul> : isAgent ? <ul className="font-semibold space-y-2 font-ubuntu my-4">
                                 <li><Link to='/dashboard/test-result'>Transaction Management</Link></li>

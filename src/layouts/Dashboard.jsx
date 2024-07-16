@@ -11,7 +11,7 @@ import LoadingSpinner from "../components/LoadingSpinner"
 import useAgent from "../hooks/useAgent";
 
 const Dashboard = () => {
-    const { user, logOut } = useAuth();
+    const { logOut } = useAuth();
     const [isAdmin, isAdminLoading] = useAdmin();
     const [isAgent, isAgentLoading] = useAgent();
     if (isAdminLoading || isAgentLoading) {
@@ -56,7 +56,7 @@ const Dashboard = () => {
                             </ul> :
                                 <ul className="font-semibold space-y-2 font-ubuntu my-4">
                                     <li><Link to='/dashboard'>My Profile</Link></li>
-                                    <li><Link to='/dashboard/appointment'>Send Money</Link></li>
+                                    <li><Link to='/dashboard/send-money'>Send Money</Link></li>
                                     <li><Link to='/dashboard/test-result'>Cash-Out</Link></li>
                                     <li><Link to='/dashboard/test-result'>Cash-In</Link></li>
                                     <li><Link to='/dashboard/test-result'>Balance Inquiry</Link></li>
@@ -91,7 +91,7 @@ const Dashboard = () => {
                             </ul> :
                                 <ul className="font-semibold space-y-2 font-ubuntu my-4">
                                     <li><Link to='/dashboard'>My Profile</Link></li>
-                                    <li><Link to='/dashboard/appointment'>Send Money</Link></li>
+                                    <li><Link to='/dashboard/send-money'>Send Money</Link></li>
                                     <li><Link to='/dashboard/test-result'>Cash-Out</Link></li>
                                     <li><Link to='/dashboard/test-result'>Cash-In</Link></li>
                                     <li><Link to='/dashboard/test-result'>Balance Inquiry</Link></li>

@@ -7,6 +7,7 @@ import Dashboard from "../layouts/Dashboard"
 import PrivateRoute from "../private/PrivateRoute";
 import Profile from "../pages/Profile";
 import AllUsers from "../pages/AllUsers";
+import SendMoney from "../pages/SendMoney";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path: 'manage',
                 element: <AllUsers></AllUsers>
+            },
+            {
+                path: 'send-money',
+                element: <SendMoney></SendMoney>
             }
         ]
     }

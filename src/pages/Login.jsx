@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -11,7 +11,7 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const onSubmit = async (data) => {
+    const onSubmit = (data) => {
         const { email, pin } = data;
         const newPin = pin + "a"
         signInUser(email, newPin)

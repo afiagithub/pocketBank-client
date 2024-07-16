@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const TitlePage = () => {
     const {user, logOut} = useContext(AuthContext);
+    console.log(user);
     const handleSigOut = () => {
         logOut()
             .then(() => {
@@ -16,7 +17,7 @@ const TitlePage = () => {
         <div className="bg-[#5654D1] h-screen flex flex-col justify-center items-center text-white">
             <h1 className="text-4xl font-bold font-nun">PocketBank</h1>
             <p className="font-light text-sm">Where your transactions are effortless and fast</p>
-            <div className="">
+            <div className="text-black flex flex-row justify-center items-center gap-5 mt-5">
                 {
                     user? <NavLink onClick={handleSigOut} className="btn bg-[#5DFBC5] border-2 border-[#5DFBC5] hover:border-[#5DFBC5] 
                     hover:bg-transparent hover:text-[#5DFBC5] text-lg font-bold">LogOut</NavLink> :

@@ -4,30 +4,26 @@ import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Login = () => {
-    const { setUser } = useContext(AuthContext);
-    const axiosPublic = useAxiosPublic();
+    const { signInUser } = useContext(AuthContext);
     const navigate = useNavigate();
-    const location = useLocation();
-    const from = location?.state || '/';
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
         const { email, pin } = data;
-        const res = await axiosPublic.get(`/user?email=${email}&pin=${pin}`)
-        console.log(res);
-        if(res.data){            
-            setUser(res.data)
-            navigate(`${from}`)
-            toast.success("Successfully Logged In")
-        }
-        else{
-            toast.error("Invalid Credential")
-        }
-    }
+        const newPin = pin + "a"
+        signInUser(email, newPin)
+            .then((result) => {
+                if (result.user)
+                    navigate(`/dashboard`)
+                toast.success("Successfully Logged In")
+            })
+            .catch(() => {
+                toast.error("Invalid Credential")
+            });
+    }    
     return (
         <div className="flex flex-col max-w-md mx-auto p-6 rounded-md sm:p-10 mb-10">
             <div className="mb-8 text-center">

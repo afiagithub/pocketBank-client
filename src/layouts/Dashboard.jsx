@@ -8,11 +8,13 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useState } from "react";
 import useAdmin from "../hooks/useAdmin";
 import LoadingSpinner from "../components/LoadingSpinner"
+import useAgent from "../hooks/useAgent";
 
 const Dashboard = () => {
     const { user, logOut } = useAuth();
     const [isAdmin, isAdminLoading] = useAdmin();
-    if (isAdminLoading) {
+    const [isAgent, isAgentLoading] = useAgent();
+    if (isAdminLoading || isAgentLoading) {
         <LoadingSpinner></LoadingSpinner>
     }
     const [show, setShow] = useState(false);
@@ -47,6 +49,10 @@ const Dashboard = () => {
                                 <li><Link to='/dashboard/profile'>Admin Profile</Link></li>
                                 <li><Link to='/dashboard/profile'>User Management</Link></li>
                                 <li><Link to='/dashboard/all-users'>System Monitoring</Link></li>
+                            </ul> : isAgent ? <ul className="font-semibold space-y-2 font-ubuntu my-4">
+                                <li><Link to='/dashboard/test-result'>Transaction Management</Link></li>
+                                <li><Link to='/dashboard/test-result'>Balance Inquiry</Link></li>
+                                <li><Link to='/dashboard/test-result'>Transaction History</Link></li>
                             </ul> :
                                 <ul className="font-semibold space-y-2 font-ubuntu my-4">
                                     <li><Link to='/dashboard/profile'>My Profile</Link></li>
@@ -75,18 +81,22 @@ const Dashboard = () => {
                         <hr />
                         {
                             isAdmin ? <ul className="font-semibold space-y-2 my-4">
-                            <li><Link to='/dashboard/profile'>Admin Profile</Link></li>
-                            <li><Link to='/dashboard/profile'>User Management</Link></li>
-                            <li><Link to='/dashboard/all-users'>System Monitoring</Link></li>
-                        </ul> :
-                            <ul className="font-semibold space-y-2 font-ubuntu my-4">
-                                <li><Link to='/dashboard/profile'>My Profile</Link></li>
-                                <li><Link to='/dashboard/appointment'>Send Money</Link></li>
-                                <li><Link to='/dashboard/test-result'>Cash-Out</Link></li>
-                                <li><Link to='/dashboard/test-result'>Cash-In</Link></li>
+                                <li><Link to='/dashboard/profile'>Admin Profile</Link></li>
+                                <li><Link to='/dashboard/profile'>User Management</Link></li>
+                                <li><Link to='/dashboard/all-users'>System Monitoring</Link></li>
+                            </ul> : isAgent ? <ul className="font-semibold space-y-2 font-ubuntu my-4">
+                                <li><Link to='/dashboard/test-result'>Transaction Management</Link></li>
                                 <li><Link to='/dashboard/test-result'>Balance Inquiry</Link></li>
                                 <li><Link to='/dashboard/test-result'>Transaction History</Link></li>
-                            </ul>
+                            </ul> :
+                                <ul className="font-semibold space-y-2 font-ubuntu my-4">
+                                    <li><Link to='/dashboard/profile'>My Profile</Link></li>
+                                    <li><Link to='/dashboard/appointment'>Send Money</Link></li>
+                                    <li><Link to='/dashboard/test-result'>Cash-Out</Link></li>
+                                    <li><Link to='/dashboard/test-result'>Cash-In</Link></li>
+                                    <li><Link to='/dashboard/test-result'>Balance Inquiry</Link></li>
+                                    <li><Link to='/dashboard/test-result'>Transaction History</Link></li>
+                                </ul>
                         }
                     </div>
                     <div>

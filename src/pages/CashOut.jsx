@@ -38,7 +38,7 @@ const CashOut = () => {
             rcvr_mobile: mobile,
             amount
         }
-        console.log(newTransaction);
+        // console.log(newTransaction);
 
         const pinCheck = await axiosPublic.post('/pin-check', userData)
         console.log(pinCheck);
@@ -75,7 +75,7 @@ const CashOut = () => {
             <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
                 <div className="w-full">
                     <h1 className="text-2xl font-semibold font-ubuntu tracking-wider text-gray-800 capitalize ">
-                        Send Money Through PocketBank
+                        Cash Out Through PocketBank
                     </h1>
 
                     <form onSubmit={handleSend} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
@@ -94,7 +94,7 @@ const CashOut = () => {
                         </div>
 
                         <div>
-                            <label className="block mb-2 text-sm text-gray-600 ">Amount</label>
+                            <label className="block mb-2 text-sm text-gray-600 ">Amount (Cash Out)</label>
                             <input name="amount" type="number" placeholder="Enter Amount"
                                 className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 
                                 bg-white border border-gray-200 rounded-lg" />

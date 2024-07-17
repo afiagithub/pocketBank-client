@@ -51,14 +51,14 @@ const Dashboard = () => {
                                 <li><Link to='/dashboard/all-history'>System Monitoring</Link></li>
                             </ul> : isAgent ? <ul className="font-semibold space-y-2 font-ubuntu my-4">
                                 <li><Link to='/dashboard'>My Profile</Link></li>
-                                <li><Link to='/dashboard/test-result'>Transaction Management</Link></li>
+                                <li><Link to='/dashboard/req-manage'>Transaction Management</Link></li>
                                 <li><Link to='/dashboard/history'>Transaction History</Link></li>
                             </ul> :
                                 <ul className="font-semibold space-y-2 font-ubuntu my-4">
                                     <li><Link to='/dashboard'>My Profile</Link></li>
                                     <li><Link to='/dashboard/send-money'>Send Money</Link></li>
                                     <li><Link to='/dashboard/cashout'>Cash-Out</Link></li>
-                                    <li><Link to='/dashboard/test-result'>Cash-In</Link></li>
+                                    <li><Link to='/dashboard/cashin'>Cash-In</Link></li>
                                     <li><Link to='/dashboard/history'>Transaction History</Link></li>
                                 </ul>
                         }
@@ -85,14 +85,14 @@ const Dashboard = () => {
                                 <li><Link to='/dashboard/all-history'>System Monitoring</Link></li>
                             </ul> : isAgent ? <ul className="font-semibold space-y-2 font-ubuntu my-4">
                                 <li><Link to='/dashboard'>My Profile</Link></li>
-                                <li><Link to='/dashboard/test-result'>Transaction Management</Link></li>
+                                <li><Link to='/dashboard/req-manage'>Transaction Management</Link></li>
                                 <li><Link to='/dashboard/history'>Transaction History</Link></li>
                             </ul> :
                                 <ul className="font-semibold space-y-2 font-ubuntu my-4">
                                     <li><Link to='/dashboard'>My Profile</Link></li>
                                     <li><Link to='/dashboard/send-money'>Send Money</Link></li>
                                     <li><Link to='/dashboard/cashout'>Cash-Out</Link></li>
-                                    <li><Link to='/dashboard/test-result'>Cash-In</Link></li>
+                                    <li><Link to='/dashboard/cashin'>Cash-In</Link></li>
                                     <li><Link to='/dashboard/history'>Transaction History</Link></li>
                                 </ul>
                         }

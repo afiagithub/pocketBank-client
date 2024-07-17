@@ -12,6 +12,8 @@ import MyHistory from "../pages/MyHistory";
 import AllHistory from "../pages/AllHistory";
 import AdminRoute from "../routes/AdminRoute"
 import CashOut from "../pages/CashOut";
+import CashIn from "../pages/CashIn"
+import TranManage from "../pages/TranManage";
 
 const router = createBrowserRouter([
     {
@@ -49,8 +51,16 @@ const router = createBrowserRouter([
                 element: <CashOut></CashOut>
             },
             {
+                path: 'cashin',
+                element: <CashIn></CashIn>
+            },
+            {
                 path: 'history',
                 element: <MyHistory></MyHistory>
+            },
+            {
+                path: 'req-manage',
+                element: <TranManage></TranManage>
             },
             {
                 path: 'manage',

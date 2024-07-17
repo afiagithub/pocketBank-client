@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from '../components/LoadingSpinner';
 import useAxiosPublic from '../hooks/useAxiosPublic';
 
-const SendMoney = () => {
+const CashOut = () => {
     const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
     const [currentUser, isLoading] = getUser();
@@ -16,49 +16,39 @@ const SendMoney = () => {
         const mobile = form.mobile.value;
         const pin = form.pin.value;
         let amount = parseInt(form.amount.value);
-        const currBal = parseInt(currentUser.balance);
 
-        if (currBal < amount) {
-            return toast.warning("You have insufficient balance")
-        }
-        else if (amount < 50) {
-            return toast.warning("The amount has to be at least 50 Taka")
-        }
-        else if (amount > 100) {
-            amount = amount + 5;
-            if (currBal < amount) {
-                return toast.warning("You have insufficient balance")
-            }
+        if (amount < 0) {
+            return toast.warning("Negative amount not allowed")
         }
         const userData = {
             email: currentUser.email,
             pin
         }
-
         const newTransaction = {
             user: currentUser.name,
             email: currentUser.email,
             mobile: currentUser.mobile,
             rcvr_mobile: mobile,
-            amount
+            amount,
+            status: 'pending'
         }
         // console.log(newTransaction);
 
         const pinCheck = await axiosPublic.post('/pin-check', userData)
         console.log(pinCheck);
         if (pinCheck.data.status == "ok") {
-            const res = await axiosSecure.post(`/transac`, newTransaction);
+            const res = await axiosSecure.post(`/cash-in`, newTransaction);
             if (res.data.insertedId) {
                 Swal.fire({
                     title: "Successful",
-                    text: "Transaction Done",
+                    text: "Cash In Request Sent",
                     icon: "success"
                 });
             }
             else {
                 Swal.fire({
                     title: "Unsuccessful",
-                    text: "Provide proper receiver mobile number",
+                    text: "Provide proper agent mobile number",
                     icon: "error"
                 });
             }
@@ -79,12 +69,12 @@ const SendMoney = () => {
             <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
                 <div className="w-full">
                     <h1 className="text-2xl font-semibold font-ubuntu tracking-wider text-gray-800 capitalize ">
-                        Send Money Through PocketBank
+                        Make Cash In Request Through PocketBank
                     </h1>
 
                     <form onSubmit={handleSend} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                         <div>
-                            <label className="block mb-2 text-sm text-gray-600 ">Receiver's Mobile Number</label>
+                            <label className="block mb-2 text-sm text-gray-600 ">Agent's Mobile Number</label>
                             <input name="mobile" type="number" placeholder="Enter Receiver's Number"
                                 className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 
                                 bg-white border border-gray-200 rounded-lg" />
@@ -98,14 +88,14 @@ const SendMoney = () => {
                         </div>
 
                         <div>
-                            <label className="block mb-2 text-sm text-gray-600 ">Amount</label>
+                            <label className="block mb-2 text-sm text-gray-600 ">Amount (Cash In)</label>
                             <input name="amount" type="number" placeholder="Enter Amount"
                                 className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 
                                 bg-white border border-gray-200 rounded-lg" />
                         </div>
                         <button className="btn col-span-2 bg-[#47CCC8] text-white border-2 border-[#47CCC8] 
                     hover:border-[#47CCC8] hover:bg-transparent hover:text-[#47CCC8] text-lg">
-                            Send Money</button>
+                            Request Cash In</button>
                     </form>
                 </div>
             </div>
@@ -118,4 +108,4 @@ const SendMoney = () => {
     );
 };
 
-export default SendMoney;
+export default CashOut;

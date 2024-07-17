@@ -26,14 +26,14 @@ const MyHistory = () => {
                             <th></th>
                             <th>To</th>
                             <th>Amount</th>
-                            <th>Date</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             histories.map((tran, idx) => <tr key={tran._id}>
                                 <td>{idx + 1}</td>
-                                <td>                                    
+                                <td>
                                     <div className="flex items-center gap-3">
                                         <div>
                                             <div className="font-bold">{tran.rcvr_mobile}</div>
@@ -41,6 +41,9 @@ const MyHistory = () => {
                                     </div>
                                 </td>
                                 <td>BDT. {tran.amount}</td>
+                                <td>{
+                                    tran?.status ? tran.status : 'complete'
+                                }</td>
                             </tr>)
                         }
                     </tbody>

@@ -27,6 +27,7 @@ const AllHistory = () => {
                             <th>Sender Email</th>
                             <th>Receiver Mobile</th>
                             <th>Amount</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +51,9 @@ const AllHistory = () => {
                                     </div>
                                 </td>
                                 <td>BDT. {tran.amount}</td>
+                                <td>{
+                                    tran?.status ? tran.status : 'complete'
+                                }</td>
                             </tr>)
                         }
                     </tbody>

@@ -11,6 +11,7 @@ import SendMoney from "../pages/SendMoney";
 import MyHistory from "../pages/MyHistory";
 import AllHistory from "../pages/AllHistory";
 import AdminRoute from "../routes/AdminRoute"
+import CashOut from "../pages/CashOut";
 
 const router = createBrowserRouter([
     {
@@ -38,18 +39,22 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element:<Profile></Profile>
-            },
-            {
-                path: 'manage',
-                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
-            },
+            },            
             {
                 path: 'send-money',
                 element: <SendMoney></SendMoney>
             },
             {
+                path: 'cashout',
+                element: <CashOut></CashOut>
+            },
+            {
                 path: 'history',
                 element: <MyHistory></MyHistory>
+            },
+            {
+                path: 'manage',
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path: 'all-history',

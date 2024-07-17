@@ -57,7 +57,7 @@ const Dashboard = () => {
                                 <ul className="font-semibold space-y-2 font-ubuntu my-4">
                                     <li><Link to='/dashboard'>My Profile</Link></li>
                                     <li><Link to='/dashboard/send-money'>Send Money</Link></li>
-                                    <li><Link to='/dashboard/test-result'>Cash-Out</Link></li>
+                                    <li><Link to='/dashboard/cashout'>Cash-Out</Link></li>
                                     <li><Link to='/dashboard/test-result'>Cash-In</Link></li>
                                     <li><Link to='/dashboard/history'>Transaction History</Link></li>
                                 </ul>
@@ -91,7 +91,7 @@ const Dashboard = () => {
                                 <ul className="font-semibold space-y-2 font-ubuntu my-4">
                                     <li><Link to='/dashboard'>My Profile</Link></li>
                                     <li><Link to='/dashboard/send-money'>Send Money</Link></li>
-                                    <li><Link to='/dashboard/test-result'>Cash-Out</Link></li>
+                                    <li><Link to='/dashboard/cashout'>Cash-Out</Link></li>
                                     <li><Link to='/dashboard/test-result'>Cash-In</Link></li>
                                     <li><Link to='/dashboard/history'>Transaction History</Link></li>
                                 </ul>

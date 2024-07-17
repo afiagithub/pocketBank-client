@@ -17,7 +17,7 @@ const Login = () => {
         signInUser(email, newPin)
             .then((result) => {
                 if (result.user)
-                    navigate(`/dashboard`)
+                    navigate('/dashboard')
                 toast.success("Successfully Logged In")
             })
             .catch(() => {

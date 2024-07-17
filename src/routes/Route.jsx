@@ -8,6 +8,9 @@ import PrivateRoute from "../private/PrivateRoute";
 import Profile from "../pages/Profile";
 import AllUsers from "../pages/AllUsers";
 import SendMoney from "../pages/SendMoney";
+import MyHistory from "../pages/MyHistory";
+import AllHistory from "../pages/AllHistory";
+import AdminRoute from "../routes/AdminRoute"
 
 const router = createBrowserRouter([
     {
@@ -38,11 +41,19 @@ const router = createBrowserRouter([
             },
             {
                 path: 'manage',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path: 'send-money',
                 element: <SendMoney></SendMoney>
+            },
+            {
+                path: 'history',
+                element: <MyHistory></MyHistory>
+            },
+            {
+                path: 'all-history',
+                element: <AdminRoute><AllHistory></AllHistory></AdminRoute>
             }
         ]
     }

@@ -4,32 +4,35 @@ import getUser from '../hooks/getUser';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from '../components/LoadingSpinner';
+import useAxiosPublic from '../hooks/useAxiosPublic';
 
 const SendMoney = () => {
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
     const [currentUser, isLoading] = getUser();
     const handleSend = async (e) => {
         e.preventDefault();
         const form = e.target;
         const mobile = form.mobile.value;
-        const pin = parseInt(form.pin.value);
+        const pin = form.pin.value;
         let amount = parseInt(form.amount.value);
         const currBal = parseInt(currentUser.balance);
 
-        if(parseInt(currentUser.pin) !== pin){
-            return toast.warning("Enter correct Pin")
-        }
-        else if(currBal < amount){
+        if (currBal < amount) {
             return toast.warning("You have insufficient balance")
-        }        
-        else if(amount < 50){
+        }
+        else if (amount < 50) {
             return toast.warning("The amount has to be at least 50 Taka")
         }
-        else if(amount > 100){
+        else if (amount > 100) {
             amount = amount + 5;
-            if(currBal < amount){
+            if (currBal < amount) {
                 return toast.warning("You have insufficient balance")
             }
+        }
+        const userData = {
+            email: currentUser.email,
+            pin
         }
 
         const newTransaction = {
@@ -41,24 +44,34 @@ const SendMoney = () => {
         }
         console.log(newTransaction);
 
-        const res = await axiosSecure.post(`/transac`, newTransaction);
-        if (res.data.insertedId) {
-            Swal.fire({
-                title: "Successful",
-                text: "Added New Banner",
-                icon: "success"
-            });
+        const pinCheck = await axiosPublic.post('/pin-check', userData)
+        console.log(pinCheck);
+        if (pinCheck.data.status == "ok") {
+            const res = await axiosSecure.post(`/transac`, newTransaction);
+            if (res.data.insertedId) {
+                Swal.fire({
+                    title: "Successful",
+                    text: "Transaction Done",
+                    icon: "success"
+                });
+            }
+            else {
+                Swal.fire({
+                    title: "Unsuccessful",
+                    text: "Provide proper receiver mobile number",
+                    icon: "error"
+                });
+            }
         }
-        else{
+        else {
             Swal.fire({
                 title: "Unsuccessful",
-                text: "Provide proper receiver mobile number",
+                text: "Provide correct PIN",
                 icon: "error"
             });
         }
-
     }
-    if(isLoading){
+    if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
     return (

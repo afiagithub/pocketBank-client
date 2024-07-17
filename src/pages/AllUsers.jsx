@@ -108,7 +108,7 @@ const AllUsers = () => {
         <div className="z-0 mt-10 px-10 md:px-0">
             <h1 className="text-4xl font-bold font-ubuntu text-center mb-10">All users</h1>
             <form onSubmit={handleSearch} className="flex flex-row gap-4 items-center justify-end mr-5 md:mr-10 mb-5 md:mb-8">
-                <input type="text" name="name" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+                <input type="text" name="name" placeholder="Search" className="input input-bordered w-48 md:w-auto" />
                 <button className="btn bg-[#47CCC8] text-white border-2 border-[#47CCC8] 
                 hover:border-[#47CCC8] hover:bg-transparent hover:text-[#47CCC8]">Search</button>
             </form>
